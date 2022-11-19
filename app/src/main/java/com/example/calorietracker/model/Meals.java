@@ -45,6 +45,7 @@ public class Meals {
 
     public double getServing_weight_grams() {
         return serving_weight_grams;
+
     }
 
     public double getNf_calories() {
