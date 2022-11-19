@@ -2,9 +2,14 @@ package com.example.calorietracker.model;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
-@Entity
+@Entity(tableName = "Meals_table")
 public class Meals {
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
+    public String date;
 
     public String food_name;
 
@@ -18,16 +23,16 @@ public class Meals {
 
     public double nf_protein;
 
-    public String date;
 
-    public Meals(String food_name, double serving_weight_grams, double nf_calories, double nf_total_fat, double nf_total_carbohydrate, double nf_protein, String date) {
+    public Meals(int id, String date, String food_name, double serving_weight_grams, double nf_calories, double nf_total_fat, double nf_total_carbohydrate, double nf_protein) {
+        this.id = id;
+        this.date = date;
         this.food_name = food_name;
         this.serving_weight_grams = serving_weight_grams;
         this.nf_calories = nf_calories;
         this.nf_total_fat = nf_total_fat;
         this.nf_total_carbohydrate = nf_total_carbohydrate;
         this.nf_protein = nf_protein;
-        this.date = date;
     }
 
     public Meals(String food_name, double serving_weight_grams, double nf_calories, double nf_total_fat, double nf_total_carbohydrate, double nf_protein) {
@@ -95,5 +100,13 @@ public class Meals {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
