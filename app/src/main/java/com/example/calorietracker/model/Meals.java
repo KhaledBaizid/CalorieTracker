@@ -41,6 +41,7 @@ public class Meals {
 
     public String getFood_name() {
         return food_name;
+
     }
 
     public double getServing_weight_grams() {
