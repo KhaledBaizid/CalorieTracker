@@ -2,6 +2,7 @@ package com.example.calorietracker.model;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "Meals_table")
@@ -23,7 +24,7 @@ public class Meals {
 
     public double nf_protein;
 
-
+    @Ignore
     public Meals(int id, String date, String food_name, double serving_weight_grams, double nf_calories, double nf_total_fat, double nf_total_carbohydrate, double nf_protein) {
         this.id = id;
         this.date = date;
@@ -108,5 +109,19 @@ public class Meals {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Meals{" +
+                "id=" + id +
+                ", date='" + date + '\'' +
+                ", food_name='" + food_name + '\'' +
+                ", serving_weight_grams=" + serving_weight_grams +
+                ", nf_calories=" + nf_calories +
+                ", nf_total_fat=" + nf_total_fat +
+                ", nf_total_carbohydrate=" + nf_total_carbohydrate +
+                ", nf_protein=" + nf_protein +
+                '}';
     }
 }
