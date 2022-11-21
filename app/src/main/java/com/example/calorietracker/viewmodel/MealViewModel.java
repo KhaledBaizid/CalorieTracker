@@ -4,18 +4,36 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
+import com.example.calorietracker.model.Meals;
 import com.example.calorietracker.model.MealsList;
 import com.example.calorietracker.repository.MealsRepository;
 
 public class MealViewModel extends AndroidViewModel {
     private MealsRepository mealsRepository;
+    private MutableLiveData<MealsList> notes;
+
     public MealViewModel(@NonNull Application application) {
         super(application);
         mealsRepository=MealsRepository.getInstance(getApplication());
+        notes = new MutableLiveData<>();
+        MealsList newList = new MealsList();
+        //notes.setValue(newList);
+
     }
 
-    public MealsList getMealList(String food){
-        return mealsRepository.getInformationFromAPI(food);
+    public LiveData<MealsList> getAllNotes(){
+        return notes;
+    }
+    public /*Mealslist*/ void getMealList(String food){
+        notes.setValue(mealsRepository.getInformationFromAPI(food));
+       // return mealsRepository.getInformationFromAPI(food);
+    }
+    public MealsList getMealList1(String food){
+       // notes.setValue(mealsRepository.getInformationFromAPI(food));
+         return mealsRepository.getInformationFromAPI(food);
     }
 }

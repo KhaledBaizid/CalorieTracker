@@ -1,33 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Search Fragment"
-        android:textSize="25dp"
-        android:layout_centerInParent="true"/>
+    tools:context=".SearchCalorie">
 
     <Button
-        android:id="@+id/searchButton"
+        android:id="@+id/carbs2"
+        android:layout_width="109dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="276dp"
+        android:text="Confirm:"
+        app:layout_constraintEnd_toStartOf="@+id/size_text"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/search_src_text"
+        app:layout_constraintTop_toBottomOf="@id/search_src_text" />
+
+    <TextView
+        android:id="@+id/carbs"
+        android:layout_width="87dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="236dp"
+        android:text="Carbs:"
+        app:layout_constraintEnd_toStartOf="@+id/size_text"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/search_src_text"
+        app:layout_constraintTop_toBottomOf="@id/search_src_text" />
+
+    <TextView
+        android:id="@+id/carbs_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="236dp"
+        android:text="Carbs:"
+        app:layout_constraintStart_toStartOf="@id/search_src_text"
+        app:layout_constraintTop_toBottomOf="@id/search_src_text" />
+
+    <TextView
+        android:id="@+id/Fat"
+        android:layout_width="87dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="200dp"
+        android:text="Fat:"
+        app:layout_constraintEnd_toStartOf="@+id/size_text"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/search_src_text"
+        app:layout_constraintTop_toBottomOf="@id/search_src_text" />
+
+    <TextView
+        android:id="@+id/fat_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="200dp"
+        android:text="Food Name:"
+        app:layout_constraintStart_toStartOf="@id/search_src_text"
+        app:layout_constraintTop_toBottomOf="@id/search_src_text" />
+
+    <TextView
+        android:id="@+id/protein"
+        android:layout_width="87dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="164dp"
+        android:text="Protein:"
+        app:layout_constraintEnd_toStartOf="@+id/size_text"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/search_src_text"
+        app:layout_constraintTop_toBottomOf="@id/search_src_text" />
+
+    <TextView
+        android:id="@+id/protein_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="164dp"
+        android:text="Food Name:"
+        app:layout_constraintStart_toStartOf="@id/search_src_text"
+        app:layout_constraintTop_toBottomOf="@id/search_src_text" />
+
+    <TextView
+        android:id="@+id/calories"
+        android:layout_width="87dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="128dp"
+        android:text="Calories:"
+        app:layout_constraintEnd_toStartOf="@+id/size_text"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/search_src_text"
+        app:layout_constraintTop_toBottomOf="@id/search_src_text" />
+
+    <TextView
+        android:id="@+id/calories_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="128dp"
+        android:text="Food Name:"
+        app:layout_constraintStart_toStartOf="@id/search_src_text"
+        app:layout_constraintTop_toBottomOf="@id/search_src_text" />
+
+    <Button
+        android:id="@+id/search_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:text="Search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/searchCalorie"
-        android:layout_width="245dp"
+        android:id="@+id/search_src_text"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="110dp"
+        android:hint="Food"
+        app:layout_constraintEnd_toStartOf="@+id/search_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name" />
+    <TextView
+        android:id="@+id/foodName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="56dp"
+        android:text="Food Name:"
+        app:layout_constraintStart_toStartOf="@id/search_src_text"
+        app:layout_constraintTop_toBottomOf="@id/search_src_text" />
+
+    <TextView
+        android:id="@+id/foodName_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="56dp"
+        android:backgroundTint="@color/black"
+        android:ems="6"
+        app:layout_constraintStart_toStartOf="@id/search_src_text"
+        app:layout_constraintTop_toBottomOf="@id/search_src_text" />
+
+    <TextView
+        android:id="@+id/size"
+        android:layout_width="87dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="92dp"
+        android:text="Serving:"
+        app:layout_constraintEnd_toStartOf="@+id/size_text"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/search_src_text"
+        app:layout_constraintTop_toBottomOf="@id/search_src_text" />
+
+    <TextView
+        android:id="@+id/size_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="92dp"
+        android:text="Food Name:"
+        app:layout_constraintStart_toStartOf="@id/search_src_text"
+        app:layout_constraintTop_toBottomOf="@id/search_src_text" />
 
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

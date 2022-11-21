@@ -12,7 +12,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity2 extends AppCompatActivity {
-     EditText selectedDate;
+    // EditText selectedDate;
     BottomNavigationView bottomNavigationView;
     ListFragment listFragment= new ListFragment();
     SearchFragment searchFragment= new SearchFragment();
@@ -23,8 +23,8 @@ public class MainActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
         ///
         String date=getIntent().getStringExtra("date");
-        selectedDate=findViewById(R.id.selectedDate);
-        selectedDate.setText(date);
+       // selectedDate=findViewById(R.id.selectedDate);
+      //  selectedDate.setText(date);
         ///
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         getSupportFragmentManager().beginTransaction().replace(R.id.container,listFragment).commit();

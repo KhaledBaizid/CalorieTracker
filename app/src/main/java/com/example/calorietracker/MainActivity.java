@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mealViewModel= new ViewModelProvider(this).get(MealViewModel.class);
-        mealsList=mealViewModel.getMealList("chicken and egg");
+        mealsList=mealViewModel.getMealList1("500 gr potatos");
         System.out.println(mealsList.getMeal(0).toString());
         System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABB");
 
