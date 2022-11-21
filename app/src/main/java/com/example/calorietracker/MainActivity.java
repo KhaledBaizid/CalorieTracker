@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                // String strDt = simpleDate.format(dayOfMonth,month,year);
-                Intent intent = new Intent(MainActivity.this,SearchCalorie.class);
+                Intent intent = new Intent(MainActivity.this,MainActivity2.class);
                 intent.putExtra("date", fulldate);
                 startActivity(intent);
 
