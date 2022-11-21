@@ -12,6 +12,8 @@ import com.example.calorietracker.model.Meals;
 import com.example.calorietracker.model.MealsList;
 import com.example.calorietracker.repository.MealsRepository;
 
+import java.util.List;
+
 public class MealViewModel extends AndroidViewModel {
     private MealsRepository mealsRepository;
     private MutableLiveData<MealsList> notes;
@@ -35,5 +37,11 @@ public class MealViewModel extends AndroidViewModel {
     public MealsList getMealList1(String food){
        // notes.setValue(mealsRepository.getInformationFromAPI(food));
          return mealsRepository.getInformationFromAPI(food);
+    }
+    public void addMeal(Meals meal){
+        mealsRepository.insertMeal(meal);
+    }
+    public List<Meals> getAllMealsByDate(String date){
+        return mealsRepository.getMealsForDate(date);
     }
 }

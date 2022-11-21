@@ -8,6 +8,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 
 import com.example.calorietracker.model.Meals;
+import com.example.calorietracker.model.MealsList;
 
 import java.util.List;
 
@@ -18,6 +19,9 @@ public interface MealsDAO {
     void insert(Meals meal);
     @Query("SELECT * FROM Meals_table WHERE Date LIKE :date || '%'")
     LiveData< List<Meals>> getMeals(String date);
+
+    @Query("SELECT * FROM Meals_table WHERE Date LIKE :date || '%'")
+    List<Meals> getAllMealsForDate(String date);
 
 
 

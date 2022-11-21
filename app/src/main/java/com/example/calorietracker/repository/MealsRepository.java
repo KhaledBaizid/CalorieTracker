@@ -8,9 +8,11 @@ import com.example.calorietracker.api.ServiceGenerator;
 import com.example.calorietracker.dao.MealsDAO;
 import com.example.calorietracker.database.MealsDB;
 import com.example.calorietracker.model.ApiQuery;
+import com.example.calorietracker.model.Meals;
 import com.example.calorietracker.model.MealsList;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import retrofit2.Call;
@@ -74,6 +76,55 @@ public class MealsRepository {
                 return null;
             }
             return response.body();
+        }
+    }
+
+    public void insertMeal(Meals meal)
+    {
+        new InsertMealsAsyncTask(mealsDAO).execute(meal);
+    }
+
+    private static class InsertMealsAsyncTask extends AsyncTask<Meals, Void, Void>
+    {
+        private MealsDAO mealsDao;
+
+        private InsertMealsAsyncTask(MealsDAO mealsDao)
+        {
+            this.mealsDao = mealsDao;
+        }
+
+        @Override
+        protected Void doInBackground(Meals... meals)
+        {
+            mealsDao.insert(meals[0]);
+            return null;
+        }
+    }
+
+
+    public List<Meals> getMealsForDate(String date)
+    {
+        try
+        {
+            return new GetMealsForDateAsyncTask(mealsDAO).execute(date).get();
+        }
+        catch (ExecutionException | InterruptedException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private static class GetMealsForDateAsyncTask extends AsyncTask<String, Void, List<Meals>> {
+        private MealsDAO mealsDao;
+
+        private GetMealsForDateAsyncTask(MealsDAO mealsDao) {
+            this.mealsDao = mealsDao;
+        }
+
+        @Override
+        protected List<Meals> doInBackground(String... strings) {
+            return mealsDao.getAllMealsForDate(strings[0]);
         }
     }
 }
