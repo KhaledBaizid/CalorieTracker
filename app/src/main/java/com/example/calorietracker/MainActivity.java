@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         mealViewModel= new ViewModelProvider(this).get(MealViewModel.class);
         mealsList=mealViewModel.getMealList("chicken and egg");
         System.out.println(mealsList.getMeal(0).toString());
-        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABB");
 
         calendarView=findViewById(R.id.calendarView);
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
