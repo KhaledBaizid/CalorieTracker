@@ -9,6 +9,7 @@ import androidx.room.Query;
 
 import com.example.calorietracker.model.Meals;
 import com.example.calorietracker.model.MealsList;
+import com.example.calorietracker.model.PieChartdata;
 
 import java.util.List;
 
@@ -22,6 +23,8 @@ public interface MealsDAO {
 
     @Query("SELECT * FROM Meals_table WHERE Date LIKE :date || '%'")
     List<Meals> getAllMealsForDate(String date);
+
+
 
 
 

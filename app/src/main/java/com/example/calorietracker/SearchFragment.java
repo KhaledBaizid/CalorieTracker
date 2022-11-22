@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.example.calorietracker.model.Meals;
 import com.example.calorietracker.model.MealsList;
+import com.example.calorietracker.model.PieChartdata;
 import com.example.calorietracker.viewmodel.MealViewModel;
 
 import java.util.ArrayList;
@@ -85,12 +86,20 @@ public class SearchFragment extends Fragment {
       //  confirmButton.setOnClickListener(view2 -> mealViewModel.addMeal(meals));
         getMealsButton.setOnClickListener(view3 -> {
                      List<Meals> m= new ArrayList<>();
+                     double pieFat=0;
+                     double pieCarb=0;
+                     double pieProtein=0;
                     m= (mealViewModel.getAllMealsByDate(date));
                     for (Meals m1:m
                          ) {
+                        pieCarb+=m1.getNf_total_carbohydrate();
+                        pieFat+=m1.getNf_total_fat();
+                        pieProtein+=m1.getNf_protein();
                         System.out.println(m1.toString());
 
                     }
+                    PieChartdata p= new PieChartdata(pieFat,pieCarb,pieProtein);
+                    System.out.println(p.toString());
                 }
                 );
         //

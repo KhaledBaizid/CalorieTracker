@@ -10,12 +10,19 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.Toast;
 
+import com.anychart.AnyChart;
+import com.anychart.AnyChartView;
+import com.anychart.chart.common.dataentry.DataEntry;
+import com.anychart.chart.common.dataentry.ValueDataEntry;
+import com.anychart.charts.Pie;
 import com.example.calorietracker.model.Meals;
 import com.example.calorietracker.model.MealsList;
+import com.example.calorietracker.model.PieChartdata;
 import com.example.calorietracker.repository.MealsRepository;
 import com.example.calorietracker.viewmodel.MealViewModel;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -25,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private MealsList mealsList;
     private MealViewModel mealViewModel;
     private CalendarView calendarView;
-
+    //private AnyChartView anyChartView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -33,9 +40,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mealViewModel= new ViewModelProvider(this).get(MealViewModel.class);
-        mealsList=mealViewModel.getMealList1("500 gr potatos");
-        System.out.println(mealsList.getMeal(0).toString());
+      //  mealsList=mealViewModel.getMealList1("500 gr potatos");
+      //  System.out.println(mealsList.getMeal(0).toString());
         System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABB");
+        //anyChartView= findViewById(R.id.any_chart_view);
+        //setUpPie();
+        /////////////
 
         calendarView=findViewById(R.id.calendarView);
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -63,4 +73,6 @@ public class MainActivity extends AppCompatActivity {
         });*/
 
     }
+
+
 }
