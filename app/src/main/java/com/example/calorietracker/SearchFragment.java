@@ -2,6 +2,8 @@ package com.example.calorietracker;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -17,6 +19,7 @@ import com.example.calorietracker.model.Meals;
 import com.example.calorietracker.model.MealsList;
 import com.example.calorietracker.model.PieChartdata;
 import com.example.calorietracker.viewmodel.MealViewModel;
+import com.example.calorietracker.viewmodel.PiechartViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,19 +28,47 @@ import java.util.List;
 public class SearchFragment extends Fragment {
 
     private MealViewModel mealViewModel;
+    private PiechartViewModel piechartViewModel;
     private MealsList mealsList;
     private Meals meals;
+
+    private EditText search;
+    private Button searchButton;
+    private Button confirmButton;
+    private Button getMealsButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_search, container, false);
+        View view = inflater.inflate(R.layout.fragment_piechart, container, false);
+        TextView foodName = (TextView) view.findViewById(R.id.foodName_text);
+        TextView serving = (TextView) view.findViewById(R.id.size_text);
+        TextView calories = (TextView) view.findViewById(R.id.calories_text);
+        TextView protein = (TextView) view.findViewById(R.id.protein_text);
+        TextView fat = (TextView) view.findViewById(R.id.fat_text);
+        TextView carbs = (TextView) view.findViewById(R.id.carbs_text);
 
-        TextView search = (TextView) view.findViewById(R.id.search_src_text);
+        // search = (EditText) view.findViewById(R.id.search_src_text);
+        // searchButton = (Button)view.findViewById(R.id.search_button) ;
+       // confirmButton = (Button)view.findViewById(R.id.confirm_button) ;
+      //  getMealsButton = (Button)view.findViewById(R.id.getMealsByDate_button) ;
+       // piechartViewModel= new ViewModelProvider(this).get(PiechartViewModel.class);
+       // mealViewModel= new ViewModelProvider(this).get(MealViewModel.class);
+        return inflater.inflate(R.layout.fragment_search, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+
+    //View view = inflater.inflate(R.layout.fragment_search, container, false);
+
+        EditText search = (EditText) view.findViewById(R.id.search_src_text);
         Button searchButton = (Button)view.findViewById(R.id.search_button) ;
         Button confirmButton = (Button)view.findViewById(R.id.confirm_button) ;
         Button getMealsButton = (Button)view.findViewById(R.id.getMealsByDate_button) ;
-
+        piechartViewModel= new ViewModelProvider(this).get(PiechartViewModel.class);
         mealViewModel= new ViewModelProvider(this).get(MealViewModel.class);
         String date=getActivity().getIntent().getStringExtra("date");
        meals = new Meals("01/01/1900","bread",10,10,10,10,10);
@@ -82,7 +113,10 @@ public class SearchFragment extends Fragment {
        });
 
         searchButton.setOnClickListener(view1 -> mealViewModel.getMealList(search.getText().toString()));
-        confirmButton.setOnClickListener(view2 -> mealViewModel.addMeal(meals));
+        confirmButton.setOnClickListener(view2 -> {
+            mealViewModel.addMeal(meals);
+            piechartViewModel.getPiechartData(date);
+        });
       //  confirmButton.setOnClickListener(view2 -> mealViewModel.addMeal(meals));
         getMealsButton.setOnClickListener(view3 -> {
                      List<Meals> m= new ArrayList<>();
@@ -104,6 +138,6 @@ public class SearchFragment extends Fragment {
                 );
         //
       //  meals.setDate(foodName.toString());
-        return view;
+       // return view;
     }
 }

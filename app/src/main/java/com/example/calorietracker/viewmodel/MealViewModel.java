@@ -30,9 +30,9 @@ public class MealViewModel extends AndroidViewModel {
     public LiveData<MealsList> getAllNotes(){
         return notes;
     }
-    public /*Mealslist*/ void getMealList(String food){
+    public  void getMealList(String food){
         notes.setValue(mealsRepository.getInformationFromAPI(food));
-       // return mealsRepository.getInformationFromAPI(food);
+
     }
     public MealsList getMealList1(String food){
        // notes.setValue(mealsRepository.getInformationFromAPI(food));
