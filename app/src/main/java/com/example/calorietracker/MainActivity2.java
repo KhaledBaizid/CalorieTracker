@@ -64,7 +64,9 @@ public class MainActivity2 extends AppCompatActivity {
                       //  transaction.replace(R.id.container,piechartFragment);
                       //  transaction.commit();
                        // if(item.getItemId())
-                        piechartFragment= new PiechartFragment();
+                        if (piechartFragment==null) {
+                            piechartFragment = new PiechartFragment();
+                        }
                         getSupportFragmentManager().beginTransaction().replace(R.id.container,piechartFragment).commit();
                          return true;}
                 }

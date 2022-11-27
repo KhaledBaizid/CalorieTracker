@@ -1,5 +1,7 @@
 package com.example.calorietracker.model;
 
+import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.Ignore;
@@ -25,7 +27,7 @@ public class Meals {
     public double nf_protein;
 
 
-    public Meals(String date, String food_name, double serving_weight_grams, double nf_calories, double nf_total_fat, double nf_total_carbohydrate, double nf_protein) {
+     public Meals(String date, String food_name, double serving_weight_grams, double nf_calories, double nf_total_fat, double nf_total_carbohydrate, double nf_protein) {
 
         this.date = date;
         this.food_name = food_name;

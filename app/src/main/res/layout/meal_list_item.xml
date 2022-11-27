@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container11"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ECD4C7">
+    <TextView
+        style="@style/PokemonName"
+        android:id="@+id/item_foodname"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="Food"
+
+         />
+
+    <TextView
+        android:id="@+id/item_serving"
+        style="@style/PokemonName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Serving"
+
+        />
+
+    <TextView
+        style="@style/PokemonName"
+        android:id="@+id/item_calories"
+        android:layout_width="134dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Calories"
+
+        />
+
+</LinearLayout>

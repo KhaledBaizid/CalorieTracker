@@ -4,6 +4,7 @@ import static android.icu.text.MessagePattern.ArgType.SELECT;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
@@ -23,6 +24,9 @@ public interface MealsDAO {
 
     @Query("SELECT * FROM Meals_table WHERE Date LIKE :date || '%'")
     List<Meals> getAllMealsForDate(String date);
+
+    @Delete
+    void delete(Meals meal);
 
 
 

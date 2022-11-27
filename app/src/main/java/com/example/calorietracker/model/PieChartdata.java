@@ -6,9 +6,9 @@ public class PieChartdata {
     private double totalProtein;
 
     public PieChartdata(double totalFat, double totalCarbs, double totalProtein) {
-        this.totalFat = totalFat;
-        this.totalCarbs = totalCarbs;
-        this.totalProtein = totalProtein;
+        this.totalFat = totalFat*9;
+        this.totalCarbs = totalCarbs*4;
+        this.totalProtein = totalProtein*4;
     }
 
     public double getTotalFat() {
