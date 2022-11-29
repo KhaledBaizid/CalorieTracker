@@ -52,7 +52,8 @@ public class MealViewModel extends AndroidViewModel {
         return mealsRepository.getMealsForDate(date);
     }
     public void deleteMeal(Meals meals){
-        mealsRepository.deletetMeal(meals);
+        mealsRepository.deleteMeal(meals);
+      //  listMutableLiveData.setValue();
        // listMutableLiveData.setValue(););
     }
 }

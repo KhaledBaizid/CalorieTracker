@@ -26,64 +26,45 @@ import java.util.List;
 
 public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.ViewHolder> {
    private List<Meals> mealsList;
-   // private View.OnClickListener onClickListener;
+    private Context context;
+
     private MealsRepository mealsRepository;
-    private OnClickListener onClickListener;
-  //  OnListItemClickListner listner;
-  //  Context application = null;
-  // final  MealsDB db = MealsDB.getInstance(application);
-  // final MealsDAO mealsDAO = db.mealsDAO();
-    //private PiechartViewModel mealViewModel;
-
-   MealsAdapter(List<Meals> mealsList) {
-        this.mealsList = mealsList;
-     //  this.OnListItemClickListner=OnListItemClickListner;
+   // private OnClickListener onClickListener;
+    OnListItemClickListener listener;
 
 
+   MealsAdapter(OnListItemClickListener listener){
+       this.listener = listener;
+   }
 
-    }
-    public void setOnClickListener(OnClickListener listener) {
+   /* public void setOnClickListener(OnClickListener listener) {
         this.onClickListener = listener;
-    }
-    /*
-    public void setOnClickListener(OnClickListener listener) {
-        this.onClickListener = (View.OnClickListener) listener;
     }*/
+    public void setData(List<Meals> mealsList ){
+        this.mealsList = mealsList;
+        notifyDataSetChanged();
+
+    }
 
 
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
 
         View view = inflater.inflate(R.layout.meal_list_item, parent, false);
 
-       // mealsRepository = new MealsRepository.getInstance(MealsDB.getInstance());
-       // mealViewModel= new ViewModelProvider((ViewModelStoreOwner) this).get(MealViewModel.class);
+
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder,  int position) {
-     //holder.itemView.
-        //mealViewModel= new ViewModelProvider((ViewModelStoreOwner) this).get(PiechartViewModel.class);
+
         Meals currentMeal= mealsList.get(position);
         holder.foodName.setText(currentMeal.getFood_name());
         holder.Serving.setText(String.valueOf(currentMeal.getServing_weight_grams())+" gr");
         holder.Calories.setText(String.valueOf(currentMeal.getNf_calories())+" Kcl");
-
-
-
-       /* holder.delete.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-               // Meals theRemovedItem = mealsList.get(position);
-                // remove your item from data base
-                System.out.println("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
-              //  mealsDAO.delete(currentMeal);
-              //  mealsList.remove(currentMeal);  // remove the item from list
-              //  notifyItemRemoved(mealsList.get(getBindingAdapterPosition())); // notify the adapter about the removed item
-            }
-        });*/
 
     }
 
@@ -99,26 +80,33 @@ public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.ViewHolder> 
         TextView Calories;
         Button delete;
 
-        public ViewHolder(@NonNull View itemView) {
+         ViewHolder(@NonNull View itemView) {
             super(itemView);
             foodName= itemView.findViewById(R.id.item_foodname);
             Serving= itemView.findViewById(R.id.item_serving);
             Calories= itemView.findViewById(R.id.item_calories);
             delete=itemView.findViewById(R.id.item_delete);
+             delete.setOnClickListener(view -> {
+                 listener.onClick(getMealAt(getBindingAdapterPosition()));
+             });
 
-            itemView.setOnClickListener(v -> {
+          /*  itemView.setOnClickListener(v -> {
                 onClickListener.onClick(mealsList.get(getBindingAdapterPosition()));
-            });
+            });*/
            // itemView.setOnClickListener(v -> {
             //   onClickListener.onClick(mealsList.get(getBindingAdapterPosition()));
           //  });
-           delete.setOnClickListener(view -> {
-                onClickListener.onClick(getMealAt(getBindingAdapterPosition()));
-            });
+          // delete.setOnClickListener(view -> {
+            //    onClickListener.onClick(getMealAt(getBindingAdapterPosition()));
+           // });
         }
     }
 
-    public interface OnClickListener {
+  /*  public interface OnClickListener {
+        void onClick(Meals meals1);
+    }*/
+
+    public interface OnListItemClickListener{
         void onClick(Meals meals1);
     }
 

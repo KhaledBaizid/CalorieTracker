@@ -131,16 +131,16 @@ public class MealsRepository {
 
     //////////////////////
 
-    public void deletetMeal(Meals meal)
+    public void deleteMeal(Meals meal)
     {
-        new InsertMealsAsyncTask(mealsDAO).execute(meal);
+        new DeleteMealsAsyncTask(mealsDAO).execute(meal);
     }
 
-    private static class deleteMealsAsyncTask extends AsyncTask<Meals, Void, Void>
+    private static class DeleteMealsAsyncTask extends AsyncTask<Meals, Void, Void>
     {
         private MealsDAO mealsDao;
 
-        private deleteMealsAsyncTask(MealsDAO mealsDao)
+        private DeleteMealsAsyncTask(MealsDAO mealsDao)
         {
             this.mealsDao = mealsDao;
         }

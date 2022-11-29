@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.Locale;
 
 
-public class ListFragment extends Fragment implements MealsAdapter.OnClickListener{
+public class ListFragment extends Fragment implements MealsAdapter.OnListItemClickListener{
     RecyclerView FListOfMeals;
     private MealViewModel mealViewModel;
     private String date;
@@ -46,6 +46,7 @@ public class ListFragment extends Fragment implements MealsAdapter.OnClickListen
         FListOfMeals= view.findViewById(R.id.rv);
         FListOfMeals.setLayoutManager(manager);
         FListOfMeals.setHasFixedSize(true);
+        mealsAdapter= new MealsAdapter(this);
        //  deleteButton = (Button)view.findViewById(R.id.item_delete) ;
         mealViewModel= new ViewModelProvider(this).get(MealViewModel.class);
         date=getActivity().getIntent().getStringExtra("date");
@@ -63,13 +64,10 @@ public class ListFragment extends Fragment implements MealsAdapter.OnClickListen
       mealViewModel.getListOfMealsPerDate().observe(getViewLifecycleOwner(), new Observer<List<Meals>>() {
           @Override
           public void onChanged(List<Meals> meals) {
-              mealsAdapter=new MealsAdapter(meals);
+              mealsAdapter.setData(meals);
               FListOfMeals.setAdapter(mealsAdapter);
 
-              mealsAdapter.setOnClickListener(meals1 -> {
-                  System.out.println(meals1.toString());
-                  //  mealViewModel.deleteMeal(meals1);
-              });
+
 
           }
       }
@@ -83,15 +81,18 @@ public class ListFragment extends Fragment implements MealsAdapter.OnClickListen
         return view;
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+ //   @Override
+   // public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    //    super.onViewCreated(view, savedInstanceState);
 
 
-    }
+   // }
 
     @Override
     public void onClick(Meals meals1) {
+        System.out.println("VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV");
+        System.out.println(meals1.toString());
         mealViewModel.deleteMeal(meals1);
+        mealViewModel.getAllMealsByDate(date);
     }
 }
