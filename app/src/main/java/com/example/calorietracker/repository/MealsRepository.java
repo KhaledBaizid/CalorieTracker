@@ -127,4 +127,29 @@ public class MealsRepository {
             return mealsDao.getAllMealsForDate(strings[0]);
         }
     }
+
+
+    //////////////////////
+
+    public void deletetMeal(Meals meal)
+    {
+        new InsertMealsAsyncTask(mealsDAO).execute(meal);
+    }
+
+    private static class deleteMealsAsyncTask extends AsyncTask<Meals, Void, Void>
+    {
+        private MealsDAO mealsDao;
+
+        private deleteMealsAsyncTask(MealsDAO mealsDao)
+        {
+            this.mealsDao = mealsDao;
+        }
+
+        @Override
+        protected Void doInBackground(Meals... meals)
+        {
+            mealsDao.delete(meals[0]);
+            return null;
+        }
+    }
 }

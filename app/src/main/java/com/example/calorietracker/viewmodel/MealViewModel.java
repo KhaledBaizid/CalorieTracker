@@ -17,14 +17,20 @@ import java.util.List;
 public class MealViewModel extends AndroidViewModel {
     private MealsRepository mealsRepository;
     private MutableLiveData<MealsList> notes;
+    private MutableLiveData <List<Meals>> listMutableLiveData;
 
     public MealViewModel(@NonNull Application application) {
         super(application);
         mealsRepository=MealsRepository.getInstance(getApplication());
         notes = new MutableLiveData<>();
+        listMutableLiveData=new MutableLiveData<>();
         MealsList newList = new MealsList();
         //notes.setValue(newList);
 
+    }
+    public LiveData<List<Meals>> getListOfMealsPerDate(){
+
+        return listMutableLiveData;
     }
 
     public LiveData<MealsList> getAllNotes(){
@@ -42,6 +48,11 @@ public class MealViewModel extends AndroidViewModel {
         mealsRepository.insertMeal(meal);
     }
     public List<Meals> getAllMealsByDate(String date){
+        listMutableLiveData.setValue(mealsRepository.getMealsForDate(date));
         return mealsRepository.getMealsForDate(date);
+    }
+    public void deleteMeal(Meals meals){
+        mealsRepository.deletetMeal(meals);
+       // listMutableLiveData.setValue(););
     }
 }
