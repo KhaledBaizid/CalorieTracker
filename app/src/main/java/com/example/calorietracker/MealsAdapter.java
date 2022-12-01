@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -29,7 +30,7 @@ public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.ViewHolder> 
     private Context context;
 
     private MealsRepository mealsRepository;
-   // private OnClickListener onClickListener;
+
     OnListItemClickListener listener;
 
 
@@ -37,9 +38,7 @@ public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.ViewHolder> 
        this.listener = listener;
    }
 
-   /* public void setOnClickListener(OnClickListener listener) {
-        this.onClickListener = listener;
-    }*/
+
     public void setData(List<Meals> mealsList ){
         this.mealsList = mealsList;
         notifyDataSetChanged();
@@ -78,33 +77,25 @@ public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.ViewHolder> 
         TextView foodName;
         TextView Serving;
         TextView Calories;
-        Button delete;
+     //   Button delete;
+        ImageView imageViewDelete;
 
          ViewHolder(@NonNull View itemView) {
             super(itemView);
             foodName= itemView.findViewById(R.id.item_foodname);
             Serving= itemView.findViewById(R.id.item_serving);
             Calories= itemView.findViewById(R.id.item_calories);
-            delete=itemView.findViewById(R.id.item_delete);
-             delete.setOnClickListener(view -> {
+
+            imageViewDelete=itemView.findViewById(R.id.imageView_delete);
+             imageViewDelete.setOnClickListener(view -> {
                  listener.onClick(getMealAt(getBindingAdapterPosition()));
              });
 
-          /*  itemView.setOnClickListener(v -> {
-                onClickListener.onClick(mealsList.get(getBindingAdapterPosition()));
-            });*/
-           // itemView.setOnClickListener(v -> {
-            //   onClickListener.onClick(mealsList.get(getBindingAdapterPosition()));
-          //  });
-          // delete.setOnClickListener(view -> {
-            //    onClickListener.onClick(getMealAt(getBindingAdapterPosition()));
-           // });
+
         }
     }
 
-  /*  public interface OnClickListener {
-        void onClick(Meals meals1);
-    }*/
+
 
     public interface OnListItemClickListener{
         void onClick(Meals meals1);

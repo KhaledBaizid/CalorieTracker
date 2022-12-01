@@ -4,31 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchCalorie">
+    tools:context=".SearchFragment">
 
-    <Button
-        android:id="@+id/getMealsByDate_button"
-        android:layout_width="115dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="320dp"
-        android:text="getMeals:"
-        app:layout_constraintEnd_toStartOf="@+id/size_text"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@id/search_src_text"
-        app:layout_constraintTop_toBottomOf="@id/search_src_text" />
 
-    <Button
-        android:id="@+id/confirm_button"
-        android:layout_width="109dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="276dp"
-        android:text="Confirm:"
-        app:layout_constraintEnd_toStartOf="@+id/size_text"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@id/search_src_text"
-        app:layout_constraintTop_toBottomOf="@id/search_src_text" />
 
     <TextView
         android:id="@+id/carbs"
@@ -44,6 +22,7 @@
 
     <TextView
         android:id="@+id/carbs_text"
+        style="@style/MealStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="124dp"
@@ -66,6 +45,7 @@
 
     <TextView
         android:id="@+id/fat_text"
+        style="@style/MealStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="124dp"
@@ -88,6 +68,7 @@
 
     <TextView
         android:id="@+id/protein_text"
+        style="@style/MealStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="124dp"
@@ -110,6 +91,7 @@
 
     <TextView
         android:id="@+id/calories_text"
+        style="@style/MealStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="124dp"
@@ -118,21 +100,13 @@
         app:layout_constraintStart_toStartOf="@id/search_src_text"
         app:layout_constraintTop_toBottomOf="@id/search_src_text" />
 
-    <Button
-        android:id="@+id/search_button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-
-        android:text="Search"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/search_src_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="350dp"
+        android:layout_height="45dp"
         android:hint="Food"
-        app:layout_constraintEnd_toStartOf="@+id/search_button"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -148,9 +122,10 @@
 
     <TextView
         android:id="@+id/foodName_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="124dp"
+        style="@style/MealStyle"
+        android:layout_width="176dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="80dp"
         android:layout_marginTop="56dp"
         android:backgroundTint="@color/black"
         android:ems="6"
@@ -171,6 +146,7 @@
 
     <TextView
         android:id="@+id/size_text"
+        style="@style/MealStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="124dp"
@@ -178,6 +154,26 @@
         android:text=""
         app:layout_constraintStart_toStartOf="@id/search_src_text"
         app:layout_constraintTop_toBottomOf="@id/search_src_text" />
+
+    <ImageView
+        android:id="@+id/imageView_confirm"
+        android:layout_width="62dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="308dp"
+        android:layout_marginTop="268dp"
+        android:src="@drawable/ic_baseline_add_box_24"
+        app:layout_constraintStart_toStartOf="@id/search_src_text"
+        app:layout_constraintTop_toBottomOf="@id/search_src_text" />
+
+    <ImageView
+        android:id="@+id/imageView_search"
+        android:layout_width="58dp"
+        android:layout_height="44dp"
+        android:src="@drawable/ic_baseline_content_paste_search_24"
+        app:layout_constraintEnd_toEndOf="parent"
+
+
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

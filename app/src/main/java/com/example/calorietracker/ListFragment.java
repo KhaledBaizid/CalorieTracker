@@ -35,7 +35,7 @@ public class ListFragment extends Fragment implements MealsAdapter.OnListItemCli
     View view ;
      MealsAdapter mealsAdapter;
      private Button deleteButton;
-//private EditText selectedDate1;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -47,19 +47,13 @@ public class ListFragment extends Fragment implements MealsAdapter.OnListItemCli
         FListOfMeals.setLayoutManager(manager);
         FListOfMeals.setHasFixedSize(true);
         mealsAdapter= new MealsAdapter(this);
-       //  deleteButton = (Button)view.findViewById(R.id.item_delete) ;
+
         mealViewModel= new ViewModelProvider(this).get(MealViewModel.class);
         date=getActivity().getIntent().getStringExtra("date");
         List<Meals> meals = new ArrayList<>();
 
         meals=mealViewModel.getAllMealsByDate(date);
-      //  for (Meals m1:meals
-      //  ) {
-         //   System.out.println(m1.toString());
 
-       // }
-      //  mealsAdapter=new MealsAdapter(meals);
-     // FListOfMeals.setAdapter(mealsAdapter);
 
       mealViewModel.getListOfMealsPerDate().observe(getViewLifecycleOwner(), new Observer<List<Meals>>() {
           @Override
@@ -81,12 +75,7 @@ public class ListFragment extends Fragment implements MealsAdapter.OnListItemCli
         return view;
     }
 
- //   @Override
-   // public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    //    super.onViewCreated(view, savedInstanceState);
 
-
-   // }
 
     @Override
     public void onClick(Meals meals1) {

@@ -1,77 +1,88 @@
 package com.example.calorietracker;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
-import android.widget.Toast;
 
-import com.anychart.AnyChart;
-import com.anychart.AnyChartView;
-import com.anychart.chart.common.dataentry.DataEntry;
-import com.anychart.chart.common.dataentry.ValueDataEntry;
-import com.anychart.charts.Pie;
-import com.example.calorietracker.model.Meals;
 import com.example.calorietracker.model.MealsList;
-import com.example.calorietracker.model.PieChartdata;
 import com.example.calorietracker.repository.MealsRepository;
 import com.example.calorietracker.viewmodel.MealViewModel;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    GoogleSignInOptions gso;
+    GoogleSignInClient gsc;
 
     private MealsRepository mealsRepository;
     private MealsList mealsList;
     private MealViewModel mealViewModel;
     private CalendarView calendarView;
-    //private AnyChartView anyChartView;
+    private FirebaseAuth mAuth;
+    private Button signOut;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        mAuth = FirebaseAuth.getInstance();
         mealViewModel= new ViewModelProvider(this).get(MealViewModel.class);
-      //  mealsList=mealViewModel.getMealList1("500 gr potatos");
-      //  System.out.println(mealsList.getMeal(0).toString());
-        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABB");
-        //anyChartView= findViewById(R.id.any_chart_view);
-        //setUpPie();
-        /////////////
-
         calendarView=findViewById(R.id.calendarView);
+        signOut= findViewById(R.id.signOut);
+        gso= new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+        gsc= GoogleSignIn.getClient(this,gso);
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
 
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month,
                                             int dayOfMonth) {
-                //    Toast.makeText(getApplicationContext(), ""+dayOfMonth, Toast.LENGTH_SHORT).show();// TODO Auto-generated method stub
-                Date date = new Date(year - 1900, month, dayOfMonth);
+                                Date date = new Date(year - 1900, month, dayOfMonth);
                 String fulldate = DateFormat.format("dd/MM/yyyy", date).toString();
-
-
-               // String strDt = simpleDate.format(dayOfMonth,month,year);
-                Intent intent = new Intent(MainActivity.this,MainActivity2.class);
+                Intent intent = new Intent(MainActivity.this, DailyActivity.class);
                 intent.putExtra("date", fulldate);
                 startActivity(intent);
 
             }
 
         });
+        GoogleSignInAccount account= GoogleSignIn.getLastSignedInAccount(this);
+        signOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-       /*  calendarView.setOnClickListener(view -> {
-            Intent intent = new Intent(this, SearchCalorie.class);
-            startActivity(intent);
-        });*/
+               sign_out();
+            }
 
+        });
+
+
+
+    }
+
+    private void sign_out() {
+        gsc.signOut().addOnCompleteListener(this,new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete( Task<Void> task) {
+
+               finish();
+                startActivity(new Intent(MainActivity.this,SignInActivity.class));
+
+            }
+        });
     }
 
 

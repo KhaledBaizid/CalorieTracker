@@ -8,6 +8,7 @@ import androidx.room.RoomDatabase;
 
 import com.example.calorietracker.dao.MealsDAO;
 import com.example.calorietracker.model.Meals;
+import com.example.calorietracker.model.Photo;
 
 @Database(entities = {Meals.class}, version = 2)
 public abstract class MealsDB extends RoomDatabase {
