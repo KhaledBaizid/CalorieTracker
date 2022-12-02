@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.example.calorietracker.model.Meals;
 import com.example.calorietracker.model.MealsList;
@@ -25,8 +24,6 @@ public class MealViewModel extends AndroidViewModel {
         meals = new MutableLiveData<>();
         listMutableLiveData=new MutableLiveData<>();
         MealsList newList = new MealsList();
-        //notes.setValue(newList);
-
     }
     public LiveData<List<Meals>> getListOfMealsPerDate(){
 
@@ -41,11 +38,11 @@ public class MealViewModel extends AndroidViewModel {
 
     }
     public MealsList getMealList1(String food){
-       // notes.setValue(mealsRepository.getInformationFromAPI(food));
+
          return mealsRepository.getInformationFromAPI(food);
     }
-    public void addMeal(Meals meal){
-        mealsRepository.insertMeal(meal);
+    public void addMeal(Meals meals){
+        mealsRepository.insertMeal(meals);
     }
     public List<Meals> getAllMealsByDate(String date){
         listMutableLiveData.setValue(mealsRepository.getMealsForDate(date));
@@ -53,7 +50,6 @@ public class MealViewModel extends AndroidViewModel {
     }
     public void deleteMeal(Meals meals){
         mealsRepository.deleteMeal(meals);
-      //  listMutableLiveData.setValue();
-       // listMutableLiveData.setValue(););
+
     }
 }

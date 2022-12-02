@@ -18,9 +18,9 @@ import com.google.android.gms.tasks.Task;
 
 public class SignInActivity extends AppCompatActivity {
 
-    GoogleSignInOptions gso;
-    GoogleSignInClient gsc;
-    ImageView googleBtn;
+    GoogleSignInOptions googleSignInOptions;
+    GoogleSignInClient googleSignInClient;
+    ImageView gmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,19 +28,16 @@ public class SignInActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_sign_in);
 
-        googleBtn = findViewById(R.id.googleBtn);
+        gmail = findViewById(R.id.Gmail);
 
-        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
-        gsc = GoogleSignIn.getClient(this,gso);
+        googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+        googleSignInClient = GoogleSignIn.getClient(this,googleSignInOptions);
 
         GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
         if(acct!=null){
             navigateToSecondActivity();
-
         }
-
-
-        googleBtn.setOnClickListener(new View.OnClickListener() {
+        gmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 signIn();
@@ -49,7 +46,7 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     void signIn(){
-        Intent signInIntent = gsc.getSignInIntent();
+        Intent signInIntent = googleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent,1000);
     }
 
@@ -70,7 +67,7 @@ public class SignInActivity extends AppCompatActivity {
     }
     void navigateToSecondActivity(){
         finish();
-        Intent intent = new Intent(SignInActivity.this,MainActivity.class);
+        Intent intent = new Intent(SignInActivity.this, CalenderActivity.class);
         startActivity(intent);
     }
 

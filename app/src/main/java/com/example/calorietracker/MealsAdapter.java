@@ -1,48 +1,32 @@
 package com.example.calorietracker;
 
-import android.app.Application;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.ButtonBarLayout;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.calorietracker.dao.MealsDAO;
-import com.example.calorietracker.database.MealsDB;
 import com.example.calorietracker.model.Meals;
 import com.example.calorietracker.repository.MealsRepository;
-import com.example.calorietracker.viewmodel.MealViewModel;
-import com.example.calorietracker.viewmodel.PiechartViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.ViewHolder> {
    private List<Meals> mealsList;
     private Context context;
-
-    private MealsRepository mealsRepository;
-
     OnListItemClickListener listener;
-
 
    MealsAdapter(OnListItemClickListener listener){
        this.listener = listener;
    }
 
-
-    public void setData(List<Meals> mealsList ){
+    public void setData(List<Meals> mealsList){
         this.mealsList = mealsList;
         notifyDataSetChanged();
-
     }
 
 
@@ -50,20 +34,17 @@ public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.ViewHolder> 
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-
         View view = inflater.inflate(R.layout.meal_list_item, parent, false);
-
-
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder,  int position) {
 
-        Meals currentMeal= mealsList.get(position);
-        holder.foodName.setText(currentMeal.getFood_name());
-        holder.Serving.setText(String.valueOf(currentMeal.getServing_weight_grams())+" gr");
-        holder.Calories.setText(String.valueOf(currentMeal.getNf_calories())+" Kcl");
+        Meals currentMeals = mealsList.get(position);
+        holder.foodName.setText(currentMeals.getFood_name());
+        holder.Serving.setText(String.valueOf(currentMeals.getServing_weight_grams())+" gr");
+        holder.Calories.setText(String.valueOf(currentMeals.getNf_calories())+" Kcl");
 
     }
 
@@ -72,12 +53,10 @@ public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.ViewHolder> 
         return mealsList.size();
     }
 
-
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView foodName;
         TextView Serving;
         TextView Calories;
-     //   Button delete;
         ImageView imageViewDelete;
 
          ViewHolder(@NonNull View itemView) {
@@ -85,26 +64,18 @@ public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.ViewHolder> 
             foodName= itemView.findViewById(R.id.item_foodname);
             Serving= itemView.findViewById(R.id.item_serving);
             Calories= itemView.findViewById(R.id.item_calories);
-
             imageViewDelete=itemView.findViewById(R.id.imageView_delete);
              imageViewDelete.setOnClickListener(view -> {
                  listener.onClick(getMealAt(getBindingAdapterPosition()));
              });
 
-
         }
     }
-
-
 
     public interface OnListItemClickListener{
         void onClick(Meals meals1);
     }
 
-    public void setMealsList(List<Meals> mealsList) {
-        this.mealsList = mealsList;
-        notifyDataSetChanged();
-    }
     public Meals getMealAt(int position) {
         return mealsList.get(position);
     }

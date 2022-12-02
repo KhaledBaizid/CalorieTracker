@@ -18,13 +18,8 @@ import android.widget.TextView;
 
 import com.example.calorietracker.model.Meals;
 import com.example.calorietracker.model.MealsList;
-import com.example.calorietracker.model.PieChartdata;
 import com.example.calorietracker.viewmodel.MealViewModel;
 import com.example.calorietracker.viewmodel.PiechartViewModel;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 
 
 public class SearchFragment extends Fragment {
@@ -38,19 +33,11 @@ public class SearchFragment extends Fragment {
     private Button searchButton;
     private Button confirmButton;
     private ImageView confirmImageView,searchImageView;
-
-   // private Button getMealsButton;
+    private TextView foodName,serving,calories,protein,fat,carbs;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_piechart, container, false);
-        TextView foodName = (TextView) view.findViewById(R.id.foodName_text);
-        TextView serving = (TextView) view.findViewById(R.id.size_text);
-        TextView calories = (TextView) view.findViewById(R.id.calories_text);
-        TextView protein = (TextView) view.findViewById(R.id.protein_text);
-        TextView fat = (TextView) view.findViewById(R.id.fat_text);
-        TextView carbs = (TextView) view.findViewById(R.id.carbs_text);
 
         return inflater.inflate(R.layout.fragment_search, container, false);
     }
@@ -58,26 +45,19 @@ public class SearchFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
-
-
-        EditText search = (EditText) view.findViewById(R.id.search_src_text);
-
+         search = (EditText) view.findViewById(R.id.search_src_text);
         confirmImageView= view.findViewById(R.id.imageView_confirm);
         searchImageView= view.findViewById(R.id.imageView_search);
-
         piechartViewModel= new ViewModelProvider(this).get(PiechartViewModel.class);
         mealViewModel= new ViewModelProvider(this).get(MealViewModel.class);
         String date=getActivity().getIntent().getStringExtra("date");
-
-       meals= new Meals();
-        TextView foodName = (TextView) view.findViewById(R.id.foodName_text);
-        TextView serving = (TextView) view.findViewById(R.id.size_text);
-        TextView calories = (TextView) view.findViewById(R.id.calories_text);
-        TextView protein = (TextView) view.findViewById(R.id.protein_text);
-        TextView fat = (TextView) view.findViewById(R.id.fat_text);
-        TextView carbs = (TextView) view.findViewById(R.id.carbs_text);
+        meals = new Meals();
+        foodName =  view.findViewById(R.id.foodName_text);
+        serving =  view.findViewById(R.id.size_text);
+        calories =  view.findViewById(R.id.calories_text);
+        protein =  view.findViewById(R.id.protein_text);
+        fat =  view.findViewById(R.id.fat_text);
+        carbs =  view.findViewById(R.id.carbs_text);
 
       mealViewModel.getAllMeals().observe(getViewLifecycleOwner(), new Observer<MealsList>() {
            @Override
@@ -97,9 +77,7 @@ public class SearchFragment extends Fragment {
                    meals.setNf_protein(meal.getMeal(0).getNf_protein());
                    meals.setNf_total_fat(meal.getMeal(0).getNf_total_fat());
                    meals.setNf_total_carbohydrate(meal.getMeal(0).getNf_total_carbohydrate());
-
                }
-
            }
        });
 
@@ -107,8 +85,17 @@ public class SearchFragment extends Fragment {
         confirmImageView.setOnClickListener(view2 -> {
             mealViewModel.addMeal(meals);
             piechartViewModel.getPiechartData(date);
+             cleanText();
         });
+    }
 
-
+    private void cleanText() {
+        foodName.setText("");
+        serving.setText("");
+        calories.setText("");
+        protein.setText("");
+        fat.setText("");
+        carbs.setText("");
+        search.setText("");
     }
 }

@@ -1,7 +1,5 @@
 package com.example.calorietracker.dao;
 
-import static android.icu.text.MessagePattern.ArgType.SELECT;
-
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -9,8 +7,6 @@ import androidx.room.Insert;
 import androidx.room.Query;
 
 import com.example.calorietracker.model.Meals;
-import com.example.calorietracker.model.MealsList;
-import com.example.calorietracker.model.PieChartdata;
 
 import java.util.List;
 
@@ -18,15 +14,15 @@ import java.util.List;
 public interface MealsDAO {
 
     @Insert
-    void insert(Meals meal);
-    @Query("SELECT * FROM Meals_table WHERE Date LIKE :date || '%'")
+    void insert(Meals meals);
+    @Query("SELECT * FROM Meals_table WHERE Date =:date")
     LiveData< List<Meals>> getMeals(String date);
 
-    @Query("SELECT * FROM Meals_table WHERE Date LIKE :date || '%'")
+    @Query("SELECT * FROM Meals_table WHERE Date =:date")
     List<Meals> getAllMealsForDate(String date);
 
     @Delete
-    void delete(Meals meal);
+    void delete(Meals meals);
 
 
 

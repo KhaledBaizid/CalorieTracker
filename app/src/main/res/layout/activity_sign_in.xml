@@ -6,34 +6,46 @@
     android:layout_height="match_parent"
     tools:context=".SignInActivity">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="signIn"
-        android:text="SIGN IN"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ImageView
-        android:id="@+id/googleBtn"
+        android:id="@+id/Gmail"
         android:layout_width="59dp"
         android:layout_height="61dp"
-        android:layout_marginStart="124dp"
-        android:layout_marginTop="640dp"
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="632dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/common_google_signin_btn_icon_dark" />
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="52dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="196dp"
-        android:layout_marginTop="648dp"
+        android:id="@+id/imageView5"
+        android:layout_width="327dp"
+        android:layout_height="280dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="160dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/fui_ic_facebook_white_22dp" />
+        app:srcCompat="@drawable/calorie" />
+
+    <TextView
+        android:id="@+id/textView"
+        style="@style/MealStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="604dp"
+        android:text="Sign in"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        style="@style/MealStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="88dp"
+        android:text="Welcome To Calorie Tracker"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

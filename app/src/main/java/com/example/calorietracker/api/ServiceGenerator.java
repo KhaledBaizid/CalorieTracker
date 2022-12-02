@@ -7,7 +7,7 @@ public class ServiceGenerator {
 
 
     private static final String BASE_URL = "https://trackapi.nutritionix.com/";
-    //private static final String BASE_URL = "https://trackapi.nutritionix.com/v2/natural/nutrients/";
+
 
     private static Retrofit.Builder retrofitBuilder = new Retrofit.Builder()
             .baseUrl(BASE_URL)

@@ -11,25 +11,13 @@ import androidx.room.PrimaryKey;
 public class Meals {
     @PrimaryKey(autoGenerate = true)
     private int id;
-
     private String date;
-
     public String food_name;
-
     public double serving_weight_grams;
-
     public double nf_calories;
-
     public double nf_total_fat;
-
     public double nf_total_carbohydrate;
-
     public double nf_protein;
-
-    //public Photo photo;
-
-
-
 
      public Meals(String date, String food_name, double serving_weight_grams, double nf_calories, double nf_total_fat, double nf_total_carbohydrate, double nf_protein) {
 
@@ -40,7 +28,7 @@ public class Meals {
         this.nf_total_fat = nf_total_fat;
         this.nf_total_carbohydrate = nf_total_carbohydrate;
         this.nf_protein = nf_protein;
-       // this.photo= new Photo(1,"","");
+
     }
     @Ignore
     public Meals(String food_name, double serving_weight_grams, double nf_calories, double nf_total_fat, double nf_total_carbohydrate, double nf_protein) {
@@ -52,21 +40,10 @@ public class Meals {
         this.nf_protein = nf_protein;
     }
 
-    @Ignore
-    public Meals(String food_name, double serving_weight_grams, double nf_calories, double nf_total_fat, double nf_total_carbohydrate, double nf_protein, Photo photo) {
-        this.food_name = food_name;
-        this.serving_weight_grams = serving_weight_grams;
-        this.nf_calories = nf_calories;
-        this.nf_total_fat = nf_total_fat;
-        this.nf_total_carbohydrate = nf_total_carbohydrate;
-        this.nf_protein = nf_protein;
-       // this.photo=photo;
-    }
+
     @Ignore
     public Meals() {
     }
-
-
 
     public String getFood_name() {
         return food_name;

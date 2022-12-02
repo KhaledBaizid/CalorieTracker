@@ -79,9 +79,9 @@ public class MealsRepository {
         }
     }
 
-    public void insertMeal(Meals meal)
+    public void insertMeal(Meals meals)
     {
-        new InsertMealsAsyncTask(mealsDAO).execute(meal);
+        new InsertMealsAsyncTask(mealsDAO).execute(meals);
     }
 
     private static class InsertMealsAsyncTask extends AsyncTask<Meals, Void, Void>
@@ -131,9 +131,9 @@ public class MealsRepository {
 
     //////////////////////
 
-    public void deleteMeal(Meals meal)
+    public void deleteMeal(Meals meals)
     {
-        new DeleteMealsAsyncTask(mealsDAO).execute(meal);
+        new DeleteMealsAsyncTask(mealsDAO).execute(meals);
     }
 
     private static class DeleteMealsAsyncTask extends AsyncTask<Meals, Void, Void>

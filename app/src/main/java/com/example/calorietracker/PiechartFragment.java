@@ -1,7 +1,10 @@
 package com.example.calorietracker;
 
+import static android.graphics.Color.rgb;
+
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.ColorSpace;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -47,48 +50,31 @@ public class PiechartFragment extends Fragment {
         piechartViewModel= new ViewModelProvider(this).get(PiechartViewModel.class);
         anyChartView= (AnyChartView) view.findViewById(R.id.any_chart_view);
         totalCalories= view.findViewById(R.id.totalCalories);
-
-
-
-pie= AnyChart.pie();
+         pie= AnyChart.pie();
         return view;
     }
-        ///////
 
-        @Override
+    @Override
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
 
-        List<DataEntry> dataEntries= new ArrayList<>();
-
-
+             List<DataEntry> dataEntries= new ArrayList<>();
             pieChartdata= new PieChartdata(0,0,0);
             date=getActivity().getIntent().getStringExtra("date");
-
-
-
-        piechartViewModel.getPiechartData(date);
-        /////////////////////////////////////
-        piechartViewModel.getPieChart().observe(getViewLifecycleOwner(), new Observer<PieChartdata>() {
+            piechartViewModel.getPiechartData(date);
+            piechartViewModel.getPieChart().observe(getViewLifecycleOwner(), new Observer<PieChartdata>() {
 
             @Override
             public void onChanged(PieChartdata pieChartdata) {
-
-
                 Formatter formatter = new Formatter();
                 formatter.format("%.2f", pieChartdata.getTotalFat()+pieChartdata.getTotalProtein()+pieChartdata.getTotalCarbs());
                 totalCalories.setText(formatter.toString()+" Kcl");
-
                 dataEntries.add(new ValueDataEntry("Fat",pieChartdata.getTotalFat()));
-                    dataEntries.add(new ValueDataEntry("Protein",pieChartdata.getTotalProtein()));
-                    dataEntries.add(new ValueDataEntry("Carbs",pieChartdata.getTotalCarbs()));
-
-
+                dataEntries.add(new ValueDataEntry("Protein",pieChartdata.getTotalProtein()));
+                dataEntries.add(new ValueDataEntry("Carbs",pieChartdata.getTotalCarbs()));
+               // pie.fill("aquastyle");
                 pie.data(dataEntries);
-                    anyChartView.setChart(pie);
-
-
-
+                anyChartView.setChart(pie);
             }
         });
 

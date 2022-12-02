@@ -15,13 +15,12 @@ import com.example.calorietracker.repository.PieChartRepository;
 public class PiechartViewModel extends AndroidViewModel {
     private MutableLiveData<PieChartdata> pieChartdataMutableLiveData;
     private PieChartRepository pieChartRepository;
-  //  private MutableLiveData<MealsList> notes;
+
 
     public PiechartViewModel(@NonNull Application application) {
         super(application);
        pieChartRepository=PieChartRepository.getInstance(getApplication());
         pieChartdataMutableLiveData = new MutableLiveData<>();
-
 
     }
 
@@ -30,9 +29,7 @@ public class PiechartViewModel extends AndroidViewModel {
         return pieChartdataMutableLiveData;
     }
     public  void getPiechartData(String date){
-
         pieChartdataMutableLiveData.setValue(pieChartRepository.getMealsForDate(date));
-
     }
 
 }
