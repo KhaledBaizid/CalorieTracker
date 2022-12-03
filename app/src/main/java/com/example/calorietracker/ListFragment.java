@@ -1,5 +1,7 @@
 package com.example.calorietracker;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -19,11 +21,11 @@ import com.example.calorietracker.viewmodel.FoodViewModel;
 import java.util.List;
 
 
-public class ListFragment extends Fragment implements FoodsAdapter.OnListItemClickListener{
+public class ListFragment extends Fragment implements FoodsAdapter.OnListItemClickListener {
     RecyclerView FListOfMeals;
     private FoodViewModel foodViewModel;
     private String date;
-    View view ;
+    View view;
     FoodsAdapter foodsAdapter;
 
     @Override
@@ -31,27 +33,46 @@ public class ListFragment extends Fragment implements FoodsAdapter.OnListItemCli
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_list, container, false);
         LinearLayoutManager manager = new LinearLayoutManager(this.getActivity());
-        FListOfMeals= view.findViewById(R.id.rv);
+        FListOfMeals = view.findViewById(R.id.rv);
         FListOfMeals.setLayoutManager(manager);
         FListOfMeals.setHasFixedSize(true);
         foodsAdapter = new FoodsAdapter(this);
         foodViewModel = new ViewModelProvider(this).get(FoodViewModel.class);
-        date=getActivity().getIntent().getStringExtra("date");
+        date = getActivity().getIntent().getStringExtra("date");
         foodViewModel.getAllFoodsByDate(date);
         foodViewModel.getListOfMealsPerDate().observe(getViewLifecycleOwner(), new Observer<List<Foods>>() {
-          @Override
-          public void onChanged(List<Foods> meals) {
-              foodsAdapter.setData(meals);
-              FListOfMeals.setAdapter(foodsAdapter);
-          }
-      }
-      );
+                    @Override
+                    public void onChanged(List<Foods> meals) {
+                        foodsAdapter.setData(meals);
+                        FListOfMeals.setAdapter(foodsAdapter);
+                    }
+                }
+        );
         return view;
     }
 
     @Override
     public void onClick(Foods foods1) {
-        foodViewModel.deleteFood(foods1);
-        foodViewModel.getAllFoodsByDate(date);
-    }
+        AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+        alert.setTitle("Delete Confirmation");
+        alert.setMessage("Are you sure you want to delete "+foods1.getFood_name()+", with "+foods1.getServing_weight_grams()+" gr ?");
+        alert.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int which) {
+                foodViewModel.deleteFood(foods1);
+                foodViewModel.getAllFoodsByDate(date);
+            }
+        });
+        alert.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        alert.show();
+
+
+
+                }
+
+
 }
