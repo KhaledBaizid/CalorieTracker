@@ -26,12 +26,11 @@ public class SearchFragment extends Fragment {
 
     private FoodViewModel foodViewModel;
     private PiechartViewModel piechartViewModel;
-    private FoodsList foodsList;
+
     private Foods foods;
 
     private EditText search;
-    private Button searchButton;
-    private Button confirmButton;
+
     private ImageView confirmImageView,searchImageView;
     private TextView foodName,serving,calories,protein,fat,carbs;
 
