@@ -7,9 +7,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.calorietracker.model.MealsList;
 import com.example.calorietracker.model.PieChartdata;
-import com.example.calorietracker.repository.MealsRepository;
 import com.example.calorietracker.repository.PieChartRepository;
 
 public class PiechartViewModel extends AndroidViewModel {
@@ -29,7 +27,7 @@ public class PiechartViewModel extends AndroidViewModel {
         return pieChartdataMutableLiveData;
     }
     public  void getPiechartData(String date){
-        pieChartdataMutableLiveData.setValue(pieChartRepository.getMealsForDate(date));
+        pieChartdataMutableLiveData.setValue(pieChartRepository.getFoodsForDate(date));
     }
 
 }

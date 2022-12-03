@@ -15,10 +15,10 @@ public class ServiceGenerator {
 
     private static Retrofit retrofit = retrofitBuilder.build();
 
-    private static MealsApi mealsAPI = retrofit.create(MealsApi.class);
+    private static FoodsApi foodsAPI = retrofit.create(FoodsApi.class);
 
-    public static MealsApi getApiEndpoint()
+    public static FoodsApi getApiEndpoint()
     {
-        return mealsAPI;
+        return foodsAPI;
     }
 }

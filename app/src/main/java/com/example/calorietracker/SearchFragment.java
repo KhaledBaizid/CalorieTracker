@@ -16,18 +16,18 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.calorietracker.model.Meals;
-import com.example.calorietracker.model.MealsList;
-import com.example.calorietracker.viewmodel.MealViewModel;
+import com.example.calorietracker.model.Foods;
+import com.example.calorietracker.model.FoodsList;
+import com.example.calorietracker.viewmodel.FoodViewModel;
 import com.example.calorietracker.viewmodel.PiechartViewModel;
 
 
 public class SearchFragment extends Fragment {
 
-    private MealViewModel mealViewModel;
+    private FoodViewModel foodViewModel;
     private PiechartViewModel piechartViewModel;
-    private MealsList mealsList;
-    private Meals meals;
+    private FoodsList foodsList;
+    private Foods foods;
 
     private EditText search;
     private Button searchButton;
@@ -49,9 +49,9 @@ public class SearchFragment extends Fragment {
         confirmImageView= view.findViewById(R.id.imageView_confirm);
         searchImageView= view.findViewById(R.id.imageView_search);
         piechartViewModel= new ViewModelProvider(this).get(PiechartViewModel.class);
-        mealViewModel= new ViewModelProvider(this).get(MealViewModel.class);
+        foodViewModel = new ViewModelProvider(this).get(FoodViewModel.class);
         String date=getActivity().getIntent().getStringExtra("date");
-        meals = new Meals();
+        foods = new Foods();
         foodName =  view.findViewById(R.id.foodName_text);
         serving =  view.findViewById(R.id.size_text);
         calories =  view.findViewById(R.id.calories_text);
@@ -59,31 +59,31 @@ public class SearchFragment extends Fragment {
         fat =  view.findViewById(R.id.fat_text);
         carbs =  view.findViewById(R.id.carbs_text);
 
-      mealViewModel.getAllMeals().observe(getViewLifecycleOwner(), new Observer<MealsList>() {
+      foodViewModel.getAllFoods().observe(getViewLifecycleOwner(), new Observer<FoodsList>() {
            @Override
-           public void onChanged(MealsList meal) {
+           public void onChanged(FoodsList food) {
 
-               if (meal !=null) {
-                   foodName.setText(meal.getMeal(0).getFood_name());
-                   serving.setText(String.valueOf(meal.getMeal(0).getServing_weight_grams())+ " gr");
-                   calories.setText(String.valueOf(meal.getMeal(0).getNf_calories())+" Kcl");
-                   protein.setText(String.valueOf(meal.getMeal(0).getNf_protein())+ " gr");
-                   fat.setText(String.valueOf(meal.getMeal(0).getNf_total_fat())+ " gr");
-                   carbs.setText(String.valueOf(meal.getMeal(0).getNf_total_carbohydrate())+ " gr");
-                   meals.setDate(date);
-                   meals.setFood_name(foodName.getText().toString().substring(0,1).toUpperCase()+foodName.getText().toString().substring(1));
-                   meals.setServing_weight_grams(meal.getMeal(0).getServing_weight_grams());
-                   meals.setNf_calories(meal.getMeal(0).getNf_calories());
-                   meals.setNf_protein(meal.getMeal(0).getNf_protein());
-                   meals.setNf_total_fat(meal.getMeal(0).getNf_total_fat());
-                   meals.setNf_total_carbohydrate(meal.getMeal(0).getNf_total_carbohydrate());
+               if (food !=null) {
+                   foodName.setText(food.getFood(0).getFood_name());
+                   serving.setText(String.valueOf(food.getFood(0).getServing_weight_grams())+ " gr");
+                   calories.setText(String.valueOf(food.getFood(0).getNf_calories())+" Kcl");
+                   protein.setText(String.valueOf(food.getFood(0).getNf_protein())+ " gr");
+                   fat.setText(String.valueOf(food.getFood(0).getNf_total_fat())+ " gr");
+                   carbs.setText(String.valueOf(food.getFood(0).getNf_total_carbohydrate())+ " gr");
+                   foods.setDate(date);
+                   foods.setFood_name(foodName.getText().toString().substring(0,1).toUpperCase()+foodName.getText().toString().substring(1));
+                   foods.setServing_weight_grams(food.getFood(0).getServing_weight_grams());
+                   foods.setNf_calories(food.getFood(0).getNf_calories());
+                   foods.setNf_protein(food.getFood(0).getNf_protein());
+                   foods.setNf_total_fat(food.getFood(0).getNf_total_fat());
+                   foods.setNf_total_carbohydrate(food.getFood(0).getNf_total_carbohydrate());
                }
            }
        });
 
-        searchImageView.setOnClickListener(view1 -> mealViewModel.getMealList(search.getText().toString()));
+        searchImageView.setOnClickListener(view1 -> foodViewModel.getFoodList(search.getText().toString()));
         confirmImageView.setOnClickListener(view2 -> {
-            mealViewModel.addMeal(meals);
+            foodViewModel.addFood(foods);
             piechartViewModel.getPiechartData(date);
              cleanText();
         });

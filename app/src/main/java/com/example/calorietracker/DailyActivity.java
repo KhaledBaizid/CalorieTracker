@@ -40,7 +40,6 @@ public class DailyActivity extends AppCompatActivity {
                          return true;
                     case R.id.piechart: {
 
-
                         if (piechartFragment==null) {
                             piechartFragment = new PiechartFragment();
                         }

@@ -10,9 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
 
-import com.example.calorietracker.model.MealsList;
-import com.example.calorietracker.repository.MealsRepository;
-import com.example.calorietracker.viewmodel.MealViewModel;
+import com.example.calorietracker.model.FoodsList;
+import com.example.calorietracker.repository.FoodsRepository;
+import com.example.calorietracker.viewmodel.FoodViewModel;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -27,9 +27,9 @@ public class CalenderActivity extends AppCompatActivity {
     GoogleSignInOptions googleSignInOptions;
     GoogleSignInClient googleSignInClient;
 
-    private MealsRepository mealsRepository;
-    private MealsList mealsList;
-    private MealViewModel mealViewModel;
+    private FoodsRepository foodsRepository;
+    private FoodsList foodsList;
+    private FoodViewModel foodViewModel;
     private CalendarView calendarView;
     private FirebaseAuth mAuth;
     private Button signOut;
@@ -39,7 +39,7 @@ public class CalenderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
       //  mAuth = FirebaseAuth.getInstance();
-        mealViewModel= new ViewModelProvider(this).get(MealViewModel.class);
+        foodViewModel = new ViewModelProvider(this).get(FoodViewModel.class);
         calendarView=findViewById(R.id.calendarView);
         signOut= findViewById(R.id.signOut);
         googleSignInOptions= new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();

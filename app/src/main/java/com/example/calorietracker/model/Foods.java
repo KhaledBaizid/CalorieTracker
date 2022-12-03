@@ -7,8 +7,8 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "Meals_table")
-public class Meals {
+@Entity(tableName = "Foods_table")
+public class Foods {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String date;
@@ -19,7 +19,7 @@ public class Meals {
     public double nf_total_carbohydrate;
     public double nf_protein;
 
-     public Meals(String date, String food_name, double serving_weight_grams, double nf_calories, double nf_total_fat, double nf_total_carbohydrate, double nf_protein) {
+     public Foods(String date, String food_name, double serving_weight_grams, double nf_calories, double nf_total_fat, double nf_total_carbohydrate, double nf_protein) {
 
         this.date = date;
         this.food_name = food_name;
@@ -31,7 +31,7 @@ public class Meals {
 
     }
     @Ignore
-    public Meals(String food_name, double serving_weight_grams, double nf_calories, double nf_total_fat, double nf_total_carbohydrate, double nf_protein) {
+    public Foods(String food_name, double serving_weight_grams, double nf_calories, double nf_total_fat, double nf_total_carbohydrate, double nf_protein) {
         this.food_name = food_name;
         this.serving_weight_grams = serving_weight_grams;
         this.nf_calories = nf_calories;
@@ -42,7 +42,7 @@ public class Meals {
 
 
     @Ignore
-    public Meals() {
+    public Foods() {
     }
 
     public String getFood_name() {

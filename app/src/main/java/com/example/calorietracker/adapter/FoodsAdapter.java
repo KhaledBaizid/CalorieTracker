@@ -1,4 +1,4 @@
-package com.example.calorietracker;
+package com.example.calorietracker.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,22 +10,22 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.calorietracker.model.Meals;
-import com.example.calorietracker.repository.MealsRepository;
+import com.example.calorietracker.R;
+import com.example.calorietracker.model.Foods;
 
 import java.util.List;
 
-public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.ViewHolder> {
-   private List<Meals> mealsList;
+public class FoodsAdapter extends RecyclerView.Adapter<FoodsAdapter.ViewHolder> {
+   private List<Foods> foodsList;
     private Context context;
     OnListItemClickListener listener;
 
-   MealsAdapter(OnListItemClickListener listener){
+   public FoodsAdapter(OnListItemClickListener listener){
        this.listener = listener;
    }
 
-    public void setData(List<Meals> mealsList){
-        this.mealsList = mealsList;
+    public void setData(List<Foods> foodsList){
+        this.foodsList = foodsList;
         notifyDataSetChanged();
     }
 
@@ -41,16 +41,16 @@ public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder,  int position) {
 
-        Meals currentMeals = mealsList.get(position);
-        holder.foodName.setText(currentMeals.getFood_name());
-        holder.Serving.setText(String.valueOf(currentMeals.getServing_weight_grams())+" gr");
-        holder.Calories.setText(String.valueOf(currentMeals.getNf_calories())+" Kcl");
+        Foods currentFoods = foodsList.get(position);
+        holder.foodName.setText(currentFoods.getFood_name());
+        holder.Serving.setText(String.valueOf(currentFoods.getServing_weight_grams())+" gr");
+        holder.Calories.setText(String.valueOf(currentFoods.getNf_calories())+" Kcl");
 
     }
 
     @Override
     public int getItemCount() {
-        return mealsList.size();
+        return foodsList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -73,10 +73,10 @@ public class MealsAdapter extends RecyclerView.Adapter<MealsAdapter.ViewHolder> 
     }
 
     public interface OnListItemClickListener{
-        void onClick(Meals meals1);
+        void onClick(Foods foods1);
     }
 
-    public Meals getMealAt(int position) {
-        return mealsList.get(position);
+    public Foods getMealAt(int position) {
+        return foodsList.get(position);
     }
 }

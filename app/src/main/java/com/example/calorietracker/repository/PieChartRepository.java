@@ -3,24 +3,24 @@ package com.example.calorietracker.repository;
 import android.app.Application;
 import android.os.AsyncTask;
 
-import com.example.calorietracker.api.MealsApi;
-import com.example.calorietracker.dao.MealsDAO;
-import com.example.calorietracker.database.MealsDB;
-import com.example.calorietracker.model.Meals;
+import com.example.calorietracker.api.FoodsApi;
+import com.example.calorietracker.dao.FoodsDAO;
+import com.example.calorietracker.database.FoodsDB;
+import com.example.calorietracker.model.Foods;
 import com.example.calorietracker.model.PieChartdata;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class PieChartRepository {
-    private MealsApi mealsApi;
+    private FoodsApi foodsApi;
     private static PieChartRepository instance;
-    private MealsDAO mealsDAO;
+    private FoodsDAO foodsDAO;
 
     private PieChartRepository(Application application)
     {
-        MealsDB db = MealsDB.getInstance(application);
-        mealsDAO = db.mealsDAO();
+        FoodsDB db = FoodsDB.getInstance(application);
+        foodsDAO = db.foodsDAO();
     }
 
     public static PieChartRepository getInstance(Application application)
@@ -33,18 +33,18 @@ public class PieChartRepository {
     }
 
 
-    public PieChartdata getMealsForDate(String date)
+    public PieChartdata getFoodsForDate(String date)
     {    double pieFat=0;
         double pieCarb=0;
         double pieProtein=0;
         try
         {
-            List<Meals> meals=  new PieChartRepository.GetMealsForDateAsyncTask(mealsDAO).execute(date).get();
-            for (Meals m:meals
+            List<Foods> foods=  new PieChartRepository.GetFoodsForDateAsyncTask(foodsDAO).execute(date).get();
+            for (Foods f:foods
                  ) {
-                pieCarb+=m.getNf_total_carbohydrate();
-                pieFat+=m.getNf_total_fat();
-                pieProtein+=m.getNf_protein();
+                pieCarb+=f.getNf_total_carbohydrate();
+                pieFat+=f.getNf_total_fat();
+                pieProtein+=f.getNf_protein();
             }
             return new PieChartdata(pieFat,pieCarb,pieProtein);
         }
@@ -55,16 +55,16 @@ public class PieChartRepository {
         return null;
     }
 
-    private static class GetMealsForDateAsyncTask extends AsyncTask<String, Void, List<Meals>> {
-        private MealsDAO mealsDao;
+    private static class GetFoodsForDateAsyncTask extends AsyncTask<String, Void, List<Foods>> {
+        private FoodsDAO foodsDao;
 
-        private GetMealsForDateAsyncTask(MealsDAO mealsDao) {
-            this.mealsDao = mealsDao;
+        private GetFoodsForDateAsyncTask(FoodsDAO foodsDao) {
+            this.foodsDao = foodsDao;
         }
 
         @Override
-        protected List<Meals> doInBackground(String... strings) {
-            return mealsDao.getAllMealsForDate(strings[0]);
+        protected List<Foods> doInBackground(String... strings) {
+            return foodsDao.getAllFoodsForDate(strings[0]);
         }
     }
 }

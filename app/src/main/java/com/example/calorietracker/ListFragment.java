@@ -11,21 +11,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
-import com.example.calorietracker.model.Meals;
-import com.example.calorietracker.viewmodel.MealViewModel;
+import com.example.calorietracker.adapter.FoodsAdapter;
+import com.example.calorietracker.model.Foods;
+import com.example.calorietracker.viewmodel.FoodViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
-public class ListFragment extends Fragment implements MealsAdapter.OnListItemClickListener{
+public class ListFragment extends Fragment implements FoodsAdapter.OnListItemClickListener{
     RecyclerView FListOfMeals;
-    private MealViewModel mealViewModel;
+    private FoodViewModel foodViewModel;
     private String date;
     View view ;
-    MealsAdapter mealsAdapter;
+    FoodsAdapter foodsAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,15 +34,15 @@ public class ListFragment extends Fragment implements MealsAdapter.OnListItemCli
         FListOfMeals= view.findViewById(R.id.rv);
         FListOfMeals.setLayoutManager(manager);
         FListOfMeals.setHasFixedSize(true);
-        mealsAdapter= new MealsAdapter(this);
-        mealViewModel= new ViewModelProvider(this).get(MealViewModel.class);
+        foodsAdapter = new FoodsAdapter(this);
+        foodViewModel = new ViewModelProvider(this).get(FoodViewModel.class);
         date=getActivity().getIntent().getStringExtra("date");
-        mealViewModel.getAllMealsByDate(date);
-        mealViewModel.getListOfMealsPerDate().observe(getViewLifecycleOwner(), new Observer<List<Meals>>() {
+        foodViewModel.getAllFoodsByDate(date);
+        foodViewModel.getListOfMealsPerDate().observe(getViewLifecycleOwner(), new Observer<List<Foods>>() {
           @Override
-          public void onChanged(List<Meals> meals) {
-              mealsAdapter.setData(meals);
-              FListOfMeals.setAdapter(mealsAdapter);
+          public void onChanged(List<Foods> meals) {
+              foodsAdapter.setData(meals);
+              FListOfMeals.setAdapter(foodsAdapter);
           }
       }
       );
@@ -51,8 +50,8 @@ public class ListFragment extends Fragment implements MealsAdapter.OnListItemCli
     }
 
     @Override
-    public void onClick(Meals meals1) {
-        mealViewModel.deleteMeal(meals1);
-        mealViewModel.getAllMealsByDate(date);
+    public void onClick(Foods foods1) {
+        foodViewModel.deleteFood(foods1);
+        foodViewModel.getAllFoodsByDate(date);
     }
 }

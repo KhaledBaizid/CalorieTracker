@@ -5,25 +5,24 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MealsList {
+public class FoodsList {
 
     @SerializedName("foods")
-    public List<Meals> mealsList;
+    public List<Foods> foodsList;
 
-    public MealsList()
+    public FoodsList()
     {
-        mealsList = new ArrayList<>();
+        foodsList = new ArrayList<>();
     }
-
-    public Meals getMeal(int index)
+    public Foods getFood(int index)
     {
-        return mealsList.get(index);
+        return foodsList.get(index);
     }
 
     @Override
     public String toString() {
-        return "MealsList{" +
-                "mealsList=" + mealsList +
+        return "FoodsList{" +
+                "foodsList=" + foodsList +
                 '}';
     }
 }
