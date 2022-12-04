@@ -12,4 +12,6 @@ CalorieTracker can be an application to help people to track their calories in d
 - As a user i want to delete the food from the daily intake so i can correct my daily intake if it was added by mistake.
 - As a user i want to get the list of food for a specific day so i can know my daily history.
 - As a user i want to see the total calories for a specific day to not exceed the maximum daily intake.
-- As a user i want a graphic chart to display the main nutrition(Carbs, Protein, and fat) so it helps me to follow my diet(if it is Keto, low carbs, high protein...)
+- As a user i want a graphic chart to display the main nutrition(Carbs, Protein, and fat) so it helps me to follow my diet(if it is Keto, low carbs, high protein...).
+
+YouTube: https://youtu.be/EnBi86GGzkU
