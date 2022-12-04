@@ -23,7 +23,7 @@ public class FoodViewModel extends AndroidViewModel {
         foodsRepository = FoodsRepository.getInstance(getApplication());
         foods = new MutableLiveData<>();
         listMutableLiveData=new MutableLiveData<>();
-        FoodsList newList = new FoodsList();
+
     }
     public LiveData<List<Foods>> getListOfMealsPerDate(){
 
@@ -37,10 +37,7 @@ public class FoodViewModel extends AndroidViewModel {
         foods.setValue(foodsRepository.getInformationFromAPI(food));
 
     }
-   /* public FoodsList getMealList1(String food){
 
-         return foodsRepository.getInformationFromAPI(food);
-    }*/
     public void addFood(Foods foods){
         foodsRepository.insertFood(foods);
     }

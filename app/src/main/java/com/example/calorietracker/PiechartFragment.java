@@ -31,7 +31,6 @@ import java.util.List;
 public class PiechartFragment extends Fragment {
     private PiechartViewModel piechartViewModel;
     private AnyChartView anyChartView;
-    private PieChartdata pieChartdata;
     private TextView totalCalories;
     private String date;
     Pie pie;
@@ -42,7 +41,7 @@ public class PiechartFragment extends Fragment {
 
         view  = inflater.inflate(R.layout.fragment_piechart, container, false);
         piechartViewModel= new ViewModelProvider(this).get(PiechartViewModel.class);
-        anyChartView= (AnyChartView) view.findViewById(R.id.any_chart_view);
+        anyChartView=  view.findViewById(R.id.any_chart_view);
         totalCalories= view.findViewById(R.id.totalCalories);
          pie= AnyChart.pie();
         return view;
@@ -53,7 +52,6 @@ public class PiechartFragment extends Fragment {
             super.onViewCreated(view, savedInstanceState);
 
              List<DataEntry> dataEntries= new ArrayList<>();
-            pieChartdata= new PieChartdata(0,0,0);
             date=getActivity().getIntent().getStringExtra("date");
             piechartViewModel.getPiechartData(date);
             piechartViewModel.getPieChart().observe(getViewLifecycleOwner(), new Observer<PieChartdata>() {
@@ -66,7 +64,6 @@ public class PiechartFragment extends Fragment {
                 dataEntries.add(new ValueDataEntry("Fat",pieChartdata.getTotalFat()));
                 dataEntries.add(new ValueDataEntry("Protein",pieChartdata.getTotalProtein()));
                 dataEntries.add(new ValueDataEntry("Carbs",pieChartdata.getTotalCarbs()));
-               // pie.fill("aquastyle");
                 pie.data(dataEntries);
                 anyChartView.setChart(pie);
             }

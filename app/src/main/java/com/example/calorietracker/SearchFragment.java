@@ -26,11 +26,8 @@ public class SearchFragment extends Fragment {
 
     private FoodViewModel foodViewModel;
     private PiechartViewModel piechartViewModel;
-
     private Foods foods;
-
     private EditText search;
-
     private ImageView confirmImageView,searchImageView;
     private TextView foodName,serving,calories,protein,fat,carbs;
 
@@ -44,7 +41,7 @@ public class SearchFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-         search = (EditText) view.findViewById(R.id.search_src_text);
+         search =  view.findViewById(R.id.search_src_text);
         confirmImageView= view.findViewById(R.id.imageView_confirm);
         searchImageView= view.findViewById(R.id.imageView_search);
         piechartViewModel= new ViewModelProvider(this).get(PiechartViewModel.class);
@@ -83,6 +80,7 @@ public class SearchFragment extends Fragment {
         searchImageView.setOnClickListener(view1 -> foodViewModel.getFoodList(search.getText().toString()));
         confirmImageView.setOnClickListener(view2 -> {
             foodViewModel.addFood(foods);
+            foods=new Foods();
             piechartViewModel.getPiechartData(date);
              cleanText();
         });

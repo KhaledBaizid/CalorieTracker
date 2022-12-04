@@ -16,7 +16,7 @@
         android:theme="@style/Theme.CalorieTracker"
         tools:targetApi="31">
         <activity
-            android:name=".CalenderActivity"
+            android:name=".CalendarActivity"
             android:exported="false" />
 
 

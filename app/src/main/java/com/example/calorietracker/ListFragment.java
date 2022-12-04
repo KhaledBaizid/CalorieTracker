@@ -22,7 +22,7 @@ import java.util.List;
 
 
 public class ListFragment extends Fragment implements FoodsAdapter.OnListItemClickListener {
-    RecyclerView FListOfMeals;
+    RecyclerView FListOfFoods;
     private FoodViewModel foodViewModel;
     private String date;
     View view;
@@ -33,9 +33,9 @@ public class ListFragment extends Fragment implements FoodsAdapter.OnListItemCli
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_list, container, false);
         LinearLayoutManager manager = new LinearLayoutManager(this.getActivity());
-        FListOfMeals = view.findViewById(R.id.rv);
-        FListOfMeals.setLayoutManager(manager);
-        FListOfMeals.setHasFixedSize(true);
+        FListOfFoods = view.findViewById(R.id.rv);
+        FListOfFoods.setLayoutManager(manager);
+        FListOfFoods.setHasFixedSize(true);
         foodsAdapter = new FoodsAdapter(this);
         foodViewModel = new ViewModelProvider(this).get(FoodViewModel.class);
         date = getActivity().getIntent().getStringExtra("date");
@@ -44,7 +44,7 @@ public class ListFragment extends Fragment implements FoodsAdapter.OnListItemCli
                     @Override
                     public void onChanged(List<Foods> meals) {
                         foodsAdapter.setData(meals);
-                        FListOfMeals.setAdapter(foodsAdapter);
+                        FListOfFoods.setAdapter(foodsAdapter);
                     }
                 }
         );
@@ -69,10 +69,5 @@ public class ListFragment extends Fragment implements FoodsAdapter.OnListItemCli
             }
         });
         alert.show();
-
-
-
                 }
-
-
 }

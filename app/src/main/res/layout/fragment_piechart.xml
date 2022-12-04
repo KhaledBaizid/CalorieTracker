@@ -6,18 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".PiechartFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <!--
-     <TextView
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_centerInParent="true"
-         android:text="Piechart Fragment"
-         android:textSize="25dp"
-         tools:layout_editor_absoluteX="76dp"
-         tools:layout_editor_absoluteY="16dp" />
- -->
-
     <com.anychart.AnyChartView
         android:id="@+id/any_chart_view"
         android:layout_width="406dp"
@@ -27,7 +15,7 @@
 
     <TextView
         android:id="@+id/totalCalories"
-        style="@style/MealStyle"
+        style="@style/FoodStyle"
         android:layout_width="112dp"
         android:layout_height="34dp"
         android:text="TextView"

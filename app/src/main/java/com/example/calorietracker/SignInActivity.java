@@ -27,15 +27,13 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_sign_in);
-
         gmail = findViewById(R.id.Gmail);
-
         googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         googleSignInClient = GoogleSignIn.getClient(this,googleSignInOptions);
 
-        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
-        if(acct!=null){
-            navigateToSecondActivity();
+        GoogleSignInAccount googleSignInAccountt = GoogleSignIn.getLastSignedInAccount(this);
+        if(googleSignInAccountt!=null){
+            navigateToCalendarActivity();
         }
         gmail.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,16 +56,16 @@ public class SignInActivity extends AppCompatActivity {
 
             try {
                 task.getResult(ApiException.class);
-                navigateToSecondActivity();
+                navigateToCalendarActivity();
             } catch (ApiException e) {
                 Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
             }
         }
 
     }
-    void navigateToSecondActivity(){
+    void navigateToCalendarActivity(){
         finish();
-        Intent intent = new Intent(SignInActivity.this, CalenderActivity.class);
+        Intent intent = new Intent(SignInActivity.this, CalendarActivity.class);
         startActivity(intent);
     }
 
