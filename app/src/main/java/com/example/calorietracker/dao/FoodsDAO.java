@@ -1,13 +1,11 @@
 package com.example.calorietracker.dao;
 
-import androidx.lifecycle.LiveData;
+
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
-
 import com.example.calorietracker.model.Foods;
-
 import java.util.List;
 
 @Dao

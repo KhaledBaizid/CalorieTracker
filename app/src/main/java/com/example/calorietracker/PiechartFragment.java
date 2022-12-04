@@ -1,6 +1,6 @@
 package com.example.calorietracker;
 
-import static android.graphics.Color.rgb;
+
 
 import android.os.Bundle;
 
@@ -9,12 +9,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.anychart.AnyChart;
 import com.anychart.AnyChartView;
 import com.anychart.chart.common.dataentry.DataEntry;
@@ -22,7 +20,6 @@ import com.anychart.chart.common.dataentry.ValueDataEntry;
 import com.anychart.charts.Pie;
 import com.example.calorietracker.model.PieChartdata;
 import com.example.calorietracker.viewmodel.PiechartViewModel;
-
 import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.List;

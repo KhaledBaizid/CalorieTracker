@@ -1,11 +1,9 @@
 package com.example.calorietracker.database;
 
 import android.content.Context;
-
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-
 import com.example.calorietracker.dao.FoodsDAO;
 import com.example.calorietracker.model.Foods;
 

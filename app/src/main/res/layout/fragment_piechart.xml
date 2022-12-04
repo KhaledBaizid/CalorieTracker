@@ -11,7 +11,8 @@
         android:layout_width="406dp"
         android:layout_height="648dp"
         tools:layout_editor_absoluteX="5dp"
-        tools:layout_editor_absoluteY="83dp" />
+        tools:layout_editor_absoluteY="83dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/totalCalories"
@@ -20,7 +21,8 @@
         android:layout_height="34dp"
         android:text="TextView"
         tools:layout_editor_absoluteX="112dp"
-        tools:layout_editor_absoluteY="33dp" />
+        tools:layout_editor_absoluteY="33dp"
+        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

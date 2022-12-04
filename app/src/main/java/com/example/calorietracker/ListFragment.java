@@ -3,21 +3,17 @@ package com.example.calorietracker;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.example.calorietracker.adapter.FoodsAdapter;
 import com.example.calorietracker.model.Foods;
 import com.example.calorietracker.viewmodel.FoodViewModel;
-
 import java.util.List;
 
 

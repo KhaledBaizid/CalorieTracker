@@ -2,7 +2,6 @@ package com.example.calorietracker.repository;
 
 import android.app.Application;
 import android.os.AsyncTask;
-
 import com.example.calorietracker.api.FoodsApi;
 import com.example.calorietracker.api.ServiceGenerator;
 import com.example.calorietracker.dao.FoodsDAO;
@@ -10,11 +9,9 @@ import com.example.calorietracker.database.FoodsDB;
 import com.example.calorietracker.model.ApiQuery;
 import com.example.calorietracker.model.Foods;
 import com.example.calorietracker.model.FoodsList;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
-
 import retrofit2.Call;
 import retrofit2.Response;
 

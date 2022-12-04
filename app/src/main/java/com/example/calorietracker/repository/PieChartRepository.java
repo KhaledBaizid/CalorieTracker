@@ -2,18 +2,14 @@ package com.example.calorietracker.repository;
 
 import android.app.Application;
 import android.os.AsyncTask;
-
-import com.example.calorietracker.api.FoodsApi;
 import com.example.calorietracker.dao.FoodsDAO;
 import com.example.calorietracker.database.FoodsDB;
 import com.example.calorietracker.model.Foods;
 import com.example.calorietracker.model.PieChartdata;
-
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class PieChartRepository {
-    private FoodsApi foodsApi;
     private static PieChartRepository instance;
     private FoodsDAO foodsDAO;
 

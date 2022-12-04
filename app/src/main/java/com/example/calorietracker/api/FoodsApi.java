@@ -2,7 +2,6 @@ package com.example.calorietracker.api;
 
 import com.example.calorietracker.model.ApiQuery;
 import com.example.calorietracker.model.FoodsList;
-
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Headers;

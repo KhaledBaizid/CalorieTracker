@@ -1,6 +1,6 @@
 package com.example.calorietracker.adapter;
 
-import android.content.Context;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,10 +9,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.calorietracker.R;
 import com.example.calorietracker.model.Foods;
-
 import java.util.List;
 
 public class FoodsAdapter extends RecyclerView.Adapter<FoodsAdapter.ViewHolder> {
